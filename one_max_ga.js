@@ -117,16 +117,23 @@ function oneMaxGA() {
 
     const fitness = getFitness(population);
 
-    const selectedParents = tournamentSelection(population, fitness, individuals);
-
-    const offspring = crossover(selectedParents);
-
-    const mutated_offspring = mutate(offspring);
-
-    population = mutated_offspring;
-
     const bestFitness = Math.max(...fitness);
-    console.log(`Generation ${generation}: Best Fitness = ${bestFitness}`);
+
+    if (bestFitness < 50) {
+      const selectedParents = tournamentSelection(population, fitness, individuals);
+  
+      const offspring = crossover(selectedParents);
+  
+      const mutated_offspring = mutate(offspring);
+  
+      population = mutated_offspring;
+
+      console.log(`Generation ${generation}: Best Fitness = ${bestFitness}`);
+    } else {
+      console.log(`Generation ${generation}: Best Fitness = ${bestFitness}`);
+      console.log(`Best fitness is reached`);
+      break;
+    }
   }
 
   const finalFitness = getFitness(population);
