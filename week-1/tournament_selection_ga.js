@@ -119,11 +119,11 @@ function oneMaxGA() {
 
     const bestFitness = Math.max(...fitness);
 
-    if (bestFitness < 50) {
+    if (bestFitness < 35) {
       const selectedParents = tournamentSelection(population, fitness, individuals);
   
       const offspring = crossover(selectedParents);
-  
+      console.log(offspring)
       const mutated_offspring = mutate(offspring);
   
       population = mutated_offspring;
